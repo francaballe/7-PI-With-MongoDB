@@ -1,0 +1,33 @@
+.myButton_black {
+  background-color: rgb(230, 220, 173);
+  width: 8em;
+  height: 3em;
+  border-radius: 75px;
+  font-weight: bold;
+  font-size: 20px;
+  margin:10px;
+  border: 5px solid grey;
+  transition:0.5s;
+}
+.myButton_black:hover{
+  background-color:#b47303;
+  color: white;
+  cursor: pointer;
+  border: 5px solid white;
+}
+  
+.mainContainer_black {
+  color:whitesmoke;
+  font-weight: bolder;
+  border: 3px solid whitesmoke;
+  display: flex;
+  flex-direction: column;
+  width: 17vw;
+  padding: 0.5em;
+  border-radius: 35px;
+}
+.mainContainer_black:hover{
+    background-color: rgb(50, 149, 167);
+    color: black;
+};
+
