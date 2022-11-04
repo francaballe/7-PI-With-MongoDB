@@ -1,6 +1,5 @@
 //Consumo mi modelo de BBDD. Creo que voy a necesitar ambos modelos....
-const { Country, Activity } = require('../db');
-const { Op } = require("sequelize");
+const { Country } = require('../db');
 
 //voy a definir una funcion
 const getCountryByName = async function (countryName) {

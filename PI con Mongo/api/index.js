@@ -18,16 +18,11 @@ const fetchDataAsync = async () =>{
     "area":unPais.hasOwnProperty("area") ? unPais.area : null,
     "population":unPais.hasOwnProperty("population") ? unPais.population : null
   }));
-  //console.log(newArray.length) //me indica que el tamaño del array es efectivamente 250 (todos los paises)
-  //console.log(newArray)
-  //console.log(newArray[1].name)
-  //Country.collection.insertOne(newArray[1])
   //Country.create(newArray[2]) //de esta forma tengo timestamps; con los insert no.
   try{
     //va a dar error por ID duplicado de todos modos, pero prosigue y ejecuta el resto del codigo gracias al ordered: false
     const resp = await Country.collection.insertMany(newArray,{ ordered: false },function(err,result) {
     //console.log(err.writeErrors[0].err.code)
-    //if (result.getWriteErrors().some( error => error.code != 11000 ))
       if (err.writeErrors.some(error => error.code === 11000)){
         console.log("Error de llave duplicada. Lo puedo ignorar.")
       }else{
@@ -47,7 +42,7 @@ fetchDataAsync();
 // Syncing all the models at once.
 /* conn.sync().then(() => {*/
   server.listen(PORT, () => {
-    console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
+    console.log(`Listening at ${PORT}`); // eslint-disable-line no-console
   });
 
   
