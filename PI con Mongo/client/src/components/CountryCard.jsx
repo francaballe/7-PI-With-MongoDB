@@ -17,7 +17,6 @@ const CountryCard = ({countryId}) => {
       dispatch(emptyCountryCard());
     },[dispatch,countryId])
 
-    
 
     //estoy reusando una funcion que ya usé en OneCountry...
     function numberWithDots(aNumber) {
@@ -66,7 +65,7 @@ const CountryCard = ({countryId}) => {
         <p className={style.pWhite}>Area: {area} Km²</p>
         <p className={style.pGrey}>Population: {population}</p>
         <p className={style.pWhite}>Activities: </p>
-        {isArrayAndNotEmpty()?selectedCountry.activities.map(unaActividad=><p className={style.pActivity} value={unaActividad.Id} key={unaActividad.Id}>{unaActividad.name} ({unaActividad.season})</p>) : <p className={style.pActivity}>None</p>}
+        {isArrayAndNotEmpty()?selectedCountry.activities.map(unaActividad=><p className={style.pActivity} value={unaActividad._id} key={unaActividad._id}>{unaActividad.name} ({unaActividad.season})</p>) : <p className={style.pActivity}>None</p>}
         
       </div>
     );}

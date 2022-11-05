@@ -12,13 +12,11 @@ const ActivitySchema = mongoose.Schema(
       type: String, 
       enum : ["Winter", "Summer", "Spring", "Fall"],
     },
-    countries: [{
-        _id: String,
-        name: String
+      countries: [
+      {
+        type: String, 
+        ref: "Country"  //Esta es la forma de hacer las cosas con Mongoose y BBDD no relacionales.
       }
-      /* {
-        type: String, ref: "Country"  //Seguro esta es la forma de hacerlo....lo cambiaré después...
-      } */
     ]
   },
   {versionKey: false}

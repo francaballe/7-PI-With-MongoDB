@@ -9,12 +9,12 @@ const CountrySchema = mongoose.Schema(
     capital: {type: String, required: true},
     area: Number,
     population: Number,
-    /* activities: [
+    activities: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Activity"
+        ref: "Activity" //Esta es la forma de hacer las cosas con Mongoose y BBDD no relacionales.
       }
-    ] */
+    ]
   },
   {versionKey: false}
   );

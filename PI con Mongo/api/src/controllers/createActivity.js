@@ -1,5 +1,6 @@
 //Consumo mi modelo de BBDD. Voy a necesitar los 2 modelos...
 const { Country, Activity } = require('../db');
+const { findById } = require('../models/Country');
 
 
 //voy a definir una funcion
@@ -42,25 +43,26 @@ const createActivity = async function (data) {
     //Tomé la decisión arbitraria de crear una nueva actividad cada vez, sin controlar si ya existe una similar.
     //Es lo que más tiene sentido por cómo está planteado el problema.
     //console.log(data) //ojo, aca tengo tambien countries que NO es de la tabla activities
-    //en countries tengo solo el ID de cada pais, nada más.
+    //en countries tengo un array solo con el ID de cada pais, nada más.
     try{
 
-      //tal vez me convenga antes armar este countries que le paso acá abajo, y pasarle luego directamente
-      //lo que quiero, o sea, un array de objetos con _id y name...
-      const _idAndNameCountries = [];
-      for (let i=0;i<countries.length;i++){
-        //console.log(countries[i]) //ARG y luego MEX //me voy a quedar sólo con _id y nombre del país.
-        const unPais = await Country.findById(countries[i]).select("_id name");
-        _idAndNameCountries.push(unPais)
-      }
+      //const newActivity =  await Activity.create({name,difficulty,duration,season,countries:_idAndNameCountries});
+      const newActivity =  await Activity.create({name,difficulty,duration,season,countries});
       
-      //const newActivity =  await Activity.create({name,difficulty,duration,season,_idAndNameCountries});
-      //el create lo uso por object literals para todos los campos, menos para el último.
-      const newActivity =  await Activity.create({name,difficulty,duration,season,countries:_idAndNameCountries});
-      console.log(newActivity)
+      //Esto NO va a quedar en la BBDD grabado con estos campos...y mejor, porque sería espacio desperdiciado.
+      //es mas conveniente utilizarlo en getActivities
+      //const unaActividad = await Activity.findById(newActivity._id).populate("countries",["_id","name"]);
+      
+      //A su vez, va a ser de mi interes recorrer el array de paises y hacer la referencia cruzada, es decir, 
+      //insertar en mi colleccion "Countries" el ID de la nueva actividad, pero ojo, cada país ya podría tener
+      //otras actividades, con lo cual me va a interesar hacer un push a ese array, y no pisar sus valores actuales.
+      for (let i=0; i<countries.length; i++){
+        const unPais = await Country.findById(countries[i]);
+        unPais.activities.push(newActivity._id);
+        /* console.log("soy un pais:", unPais); */
+        await unPais.save();
+      }
 
-      //ver si esta bien retornar esto...pero diria que en principio si...aunque innecesario.
-      //desde mi ruta solo voy a devolver un OK.
       return newActivity;
     }
     catch(unError){
