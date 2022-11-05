@@ -3,7 +3,7 @@ const router = Router();
 const createActivity = require("../controllers/createActivity.js");
 const getActivities = require("../controllers/getActivities.js");
 const deleteActivity = require("../controllers/deleteActivity");
-const { Country, Activity } = require('../db');
+//const { Country, Activity } = require('../db');
 
 router.post("/", async function (req,res){
     //console.log(req.body)
@@ -36,33 +36,21 @@ router.delete("/delete/:Id", async (req, res) => {
     }
   });
   
-router.put("/put/:Id", async (req, res) => {
-    //console.log(req.body)
-    //console.log(req.params)
+  //esto fue tan solo un pedido en la correccion del pi
+/* router.put("/put/:Id", async (req, res) => {
+    
     const { Id } = req.params;
     const { name } = req.body;
     console.log("ID: " + Id + " name: " + name)
     try{
         let resp = await Activity.findByPk(Id)
         resp.update({name : name})
-        //resp.save()
-
         console.log("respuesta:", resp)
     }catch(unError){
         console.log(unError)
     }
     
-    /*
-    try{
-        let resp = await Country.findByPk(data.countries[i])
-        if (!resp) throw new Error(`El País ${data.countries[i]} no fue encontrado en la base local!`)
-      }
-      catch(unError){
-        throw new Error(unError.message)
-      }
-    }
-    */
     res.send ("estoy haciendo un put")
-})
+}) */
 
 module.exports = router;

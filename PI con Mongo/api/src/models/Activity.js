@@ -11,8 +11,17 @@ const ActivitySchema = mongoose.Schema(
     season: {
       type: String, 
       enum : ["Winter", "Summer", "Spring", "Fall"],
-    }
-  }
+    },
+    countries: [{
+        _id: String,
+        name: String
+      }
+      /* {
+        type: String, ref: "Country"  //Seguro esta es la forma de hacerlo....lo cambiaré después...
+      } */
+    ]
+  },
+  {versionKey: false}
   );
 
 const Activity = mongoose.model("Activity",ActivitySchema) 

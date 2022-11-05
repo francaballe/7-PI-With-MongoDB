@@ -3,9 +3,10 @@ const { Activity,Country } = require('../db');
 
 const getActivities = async function () {
     
-  //Uso tanto await aca como en la ruta solo a los efectos de poder hacer un console.log aca...
   try{
-    const resp = await Activity.findAll({include:Country})    //el include equivale al join en SQL.
+    const resp = await Activity.find({});
+    //const resp = await Country.find({});
+    //const resp = await Activity.findAll({include:Country})    //el include equivale al join en SQL.
     // No me acuerdo si hace un right join, inner join, left join. 
     //Buscar en la documentación oficial de sequelize.
     return resp;

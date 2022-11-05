@@ -24,8 +24,8 @@ if (allActivities.length){// solo muestro si el array no esta vacio
     <div className={dayOrNigth==="NIGHT"?style.mainContainer_black:style.mainContainer}>
       
       {allActivities.map(unaActividad=><OneActivity
-      Id={unaActividad.Id}
-      key={unaActividad.Id}
+      _id={unaActividad._id}
+      key={unaActividad._id}
       difficulty={unaActividad.difficulty}
       duration={unaActividad.duration}
       name={unaActividad.name}

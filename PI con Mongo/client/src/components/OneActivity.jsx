@@ -8,12 +8,12 @@ const OneActivity = (props) => {
   const dayOrNigth = useSelector((state) => state.modoDiaNoche);
   
   //no se por que cuando son muchas props me parece mas prolijo destructurarlas fuera del argumento de la funcion
-  const {Id,difficulty,duration,name,season,countries} = props;
+  const {_id,difficulty,duration,name,season,countries} = props;
   
   const dispatch = useDispatch();
   const clickHandler=()=>{
-    dispatch(deleteActivity(Id));
-    //console.log("hice click: " + Id);
+    dispatch(deleteActivity(_id));
+    //console.log("hice click: " + _id);
   } 
 
     return (
@@ -25,7 +25,7 @@ const OneActivity = (props) => {
         <p className={style.pRed}>Duration: {duration} hours</p>
         <p className={style.pWhite}>Countries in which this activity is available:</p> 
           <div className={style.myCountry}>
-            {countries.map(unPais=><p key={unPais.Id}>{unPais.name}</p>)}
+            {countries.map(unPais=><p key={unPais._id}>{unPais.name}</p>)}
           </div>
         <button onClick={clickHandler} className={style.myButton}>Delete this Activity</button>
 

@@ -8,8 +8,15 @@ const CountrySchema = mongoose.Schema(
     subregion: String,
     capital: {type: String, required: true},
     area: Number,
-    population: Number
-  }
+    population: Number,
+    /* activities: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Activity"
+      }
+    ] */
+  },
+  {versionKey: false}
   );
 
 const Country = mongoose.model("Country",CountrySchema) 

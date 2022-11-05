@@ -42,7 +42,7 @@ fetchDataAsync();
 // Syncing all the models at once.
 /* conn.sync().then(() => {*/
   server.listen(PORT, () => {
-    console.log(`Listening at ${PORT}`); // eslint-disable-line no-console
+    console.log(`Listening at Port: ${PORT}`); // eslint-disable-line no-console
   });
 
   

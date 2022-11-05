@@ -36,14 +36,14 @@ const initialState = {
           const allCountries = state.countries;
           let mySelectedActivity=[];
           let filteredByActivity=[];
-
+          
           if (mySelectedActivityId==="All Activities"){
             mySelectedActivity = state.activities;
             filteredByActivity =allCountries;
           }
           else{
-            mySelectedActivity = state.activities.filter(unaActivity => (unaActivity.Id===parseInt(mySelectedActivityId)))
-            const arrayPaises = mySelectedActivity[0].countries;
+            mySelectedActivity = state.activities.find(unaActivity => (unaActivity._id===mySelectedActivityId));
+            const arrayPaises = mySelectedActivity.countries;            
             filteredByActivity = allCountries.filter(item1 => arrayPaises.some(item2 => item1._id === item2._id))
           } 
 
@@ -125,7 +125,7 @@ const initialState = {
         case "DELETE_ACTIVITY":
           return {
             ...state,
-            activities: state.activities.filter(unaActividad => (unaActividad.Id!==action.payload)) 
+            activities: state.activities.filter(unaActividad => (unaActividad._id!==action.payload)) 
           }
 
         case "GET_COUNTRIES":

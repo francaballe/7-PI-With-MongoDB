@@ -1,16 +1,15 @@
 //Veamos si en principio me alcanza solo con Activity...
 const { Activity } = require('../db');
 
-const deleteActivity = async function (Id) {
-    //console.log(Id)
+const deleteActivity = async function (_id) {
+    //console.log(_id)
     try{  
-      //primero me la voy a traer con findByPk y luego la rompo a la miercoles...si si si.
-      const toDeleteActivity = await Activity.findByPk(Id);
-      //console.log(toDeleteActivity)
+      
+      const toDeleteActivity = await Activity.findById(_id);
       if (toDeleteActivity){
-        const deleteActivity =  await toDeleteActivity.destroy();
-        //return `Activity deleted successfully (Id:${Id})`;
-        return Id;
+        await Activity.deleteOne({_id: _id}); //creo que también puedo usar o.literals.
+        //return `Activity deleted successfully (_id:${_id})`;
+        return _id;
       }
       else return "Id to be deleted not found!"; 
 

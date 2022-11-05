@@ -41,6 +41,7 @@ const SelectAndSearchContainer = () => {
   }
 
   const selectedActivityHandler = (event) => {
+    //console.log(event.target.value) 
     const activityId = event.target.value;
     setSelectedActivity(activityId);
     if (activityId!=="Filter by Activities"){
@@ -60,7 +61,7 @@ const SelectAndSearchContainer = () => {
                 <select onChange={selectedActivityHandler} value={selectedActivity} className={style.aSelector}>
                   <option disabled>Filter by Activities</option>
                   <option>All Activities</option>
-                  {allActivities.map(unaOpcion=><option value={unaOpcion.Id} key={unaOpcion.Id}>{unaOpcion.name}</option>)}
+                  {allActivities.map(unaOpcion=><option value={unaOpcion._id} key={unaOpcion._id}>{unaOpcion.name}</option>)}
                 </select>
                 
                 <select onChange={selectedOrderHandler} value={selectedOrder} className={style.aSelector}>
